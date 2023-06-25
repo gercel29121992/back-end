@@ -49,15 +49,17 @@ namespace back_end.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<List<TallaDTO>>> Todos()
         {
+            Console.Write("entro");
             var tallas = await context.talla.ToListAsync();
             return mapper.Map<List<TallaDTO>>(tallas);
         }
 
         [HttpGet("{Id:int}")]
+        [AllowAnonymous]
         public async Task<ActionResult<TallaDTO>> Get(int Id)
         {
             var talla = await context.talla.FirstOrDefaultAsync(x => x.Id == Id);
-
+            Console.Write("entro");
             if (talla == null)
             {
                 return NotFound();

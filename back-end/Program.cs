@@ -1,4 +1,5 @@
 
+
 using back_end;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
@@ -12,17 +13,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    var frontendurl = builder.Configuration.GetValue<string>("frontend_url");
+    var frontendurl = builder.Configuration.GetValue<string>("AllowedHosts");
     options.AddDefaultPolicy(builder =>
-                      {
-                          builder.WithOrigins(frontendurl)
-                           .AllowAnyMethod()
-                           .AllowAnyHeader();
+    {
+        builder.WithOrigins(frontendurl)
+         .AllowAnyMethod()
+         .AllowAnyHeader();
 
 
-                      });
+    });
 });
-builder.Services.AddIdentity<IdentityUser,IdentityRole>()
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
 
@@ -37,10 +38,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
                 .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
-           ClockSkew= TimeSpan.Zero
+            ClockSkew = TimeSpan.Zero
         };
     });
 
+
+
+  
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("EsAdmin", policy => policy.RequireClaim("role"));
@@ -63,5 +67,20 @@ var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+app.UseCors();
+app.UseAuthentication();
+app.UseAuthorization();
+
+
+
+app.MapControllers();
 
 app.Run();
