@@ -11,7 +11,7 @@ namespace back_end.Controllers
 {
     [Route("api/talla")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin")]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin")]
     public class TallaController : Controller
     {
         private readonly ILogger<TallaController> logger;

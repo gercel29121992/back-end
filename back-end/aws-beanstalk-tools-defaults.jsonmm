@@ -1,0 +1,20 @@
+
+{
+    "region" : "us-east-1",
+    "configuration" : "Debug",
+    "framework"     : "net6.0",
+    "self-contained" : false,
+    "application"    : "backend",
+    "environment"    : "backend-test",
+    "enable-xray"    : false,
+    "enhanced-health-type" : "basic",
+    "additional-options"   : "\"aws:autoscaling:launchconfiguration,SecurityGroups\"=\"sg-01a37f1469e4c9e0f,sg-056e328c13f8175e6\";\"aws:ec2:vpc,Subnets\"=\"subnet-0c830b1fc8c22be76\"",
+    "solution-stack"       : "64bit Amazon Linux 2 v2.3.5 running .NET Core",
+    "environment-type"     : "SingleInstance",
+    "cname"                : "backendtste",
+    "instance-type"        : "t3a.micro",
+    "key-pair"             : "clavejuego",
+    "instance-profile"     : "aws-elasticbeanstalk-ec2-role",
+    "service-role"         : "adminbot-RecipeBeanstalkServiceRole62B7EC28-1WBLES8MWUNH5",
+    "proxy-server"         : "nginx"
+}

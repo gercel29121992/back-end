@@ -11,8 +11,8 @@ using back_end;
 namespace back_end.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220821170727_v2")]
-    partial class v2
+    [Migration("20230703153730_migracioninicial")]
+    partial class migracioninicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -16,9 +16,5 @@
     "key-pair"             : "",
     "instance-profile"     : "aws-elasticbeanstalk-ec2-role",
     "service-role"         : "aws-elasticbeanstalk-service-role",
-    "proxy-server"         : "nginx",
-    "app-path"             : "/",
-    "iis-website"          : "Default Web Site",
-    "loadbalancer-type"    : "classic",
-    "health-check-url"     : "/"
+    "proxy-server"         : "nginx"
 }
