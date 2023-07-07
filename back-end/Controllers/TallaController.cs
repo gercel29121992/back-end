@@ -31,7 +31,19 @@ namespace back_end.Controllers
 
 
 
-    
+        [HttpPost]
+
+        public async Task<ActionResult> Post([FromBody] TallaCreacionDTO tallaCreacionDTO)
+        {
+     
+            var talla = mapper.Map<talla>(tallaCreacionDTO);
+            context.Add(talla);
+
+            await context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
 
         [HttpGet("todos")]
         [AllowAnonymous]
