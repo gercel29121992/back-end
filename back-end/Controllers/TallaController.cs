@@ -11,7 +11,7 @@ namespace back_end.Controllers
 {
     [Route("api/talla")]
     [ApiController]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin")]
     public class TallaController : Controller
     {
         private readonly ILogger<TallaController> logger;
@@ -31,19 +31,7 @@ namespace back_end.Controllers
 
 
 
-        [HttpPost]
-
-        public async Task<ActionResult> Post([FromBody] TallaCreacionDTO tallaCreacionDTO)
-        {
-     
-            var talla = mapper.Map<talla>(tallaCreacionDTO);
-            context.Add(talla);
-
-            await context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
+    
 
         [HttpGet("todos")]
         [AllowAnonymous]
