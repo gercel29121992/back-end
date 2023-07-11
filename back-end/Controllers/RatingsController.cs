@@ -1,4 +1,5 @@
 ﻿using back_end;
+using back_end.Entidades;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -18,10 +19,10 @@ namespace back_end.Controllers
     [ApiController]
     public class RatingsController: ControllerBase
     {
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<userapp> userManager;
         private readonly DataContext context;
 
-        public RatingsController(UserManager<IdentityUser> userManager,
+        public RatingsController(UserManager<userapp> userManager,
             DataContext context)
         {
             this.userManager = userManager;

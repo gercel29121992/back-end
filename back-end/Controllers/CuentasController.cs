@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using back_end;
+using back_end.Entidades;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -23,14 +24,14 @@ namespace PeliculasAPI.Controllers
     [ApiController]
     public class CuentasController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<userapp> userManager;
+        private readonly SignInManager<userapp> signInManager;
         private readonly IConfiguration configuration;
         private readonly DataContext context;
         private readonly IMapper mapper;
 
-        public CuentasController(UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+        public CuentasController(UserManager<userapp> userManager,
+            SignInManager<userapp> signInManager,
             IConfiguration configuration,
             DataContext context,
             IMapper mapper)
@@ -73,7 +74,8 @@ namespace PeliculasAPI.Controllers
         [HttpPost("crear")]
         public async Task<ActionResult<RespuestaAutenticacion>> Crear([FromBody] CredencialesUsuario credenciales)
         {
-            var usuario = new IdentityUser { UserName = credenciales.Email, Email = credenciales.Email };
+            Console.Write("gercel");
+            var usuario = new userapp { UserName = credenciales.Email, Email = credenciales.Email,ayudapass="holamundo",Sexo=credenciales.sexo,Nombre=credenciales.nombre,Apellido=credenciales.apellido,Estado=1,Cargo="estudiante" };
             var resultado = await userManager.CreateAsync(usuario, credenciales.Password);
 
             if (resultado.Succeeded)

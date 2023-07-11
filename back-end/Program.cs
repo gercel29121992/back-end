@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
+using back_end.Entidades;
 
 var builder = WebApplication.CreateBuilder(args);
 //var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -23,7 +24,7 @@ builder.Services.AddCors(options =>
 
     });
 });
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+builder.Services.AddIdentity<userapp, IdentityRole>()
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
 

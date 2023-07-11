@@ -20,6 +20,7 @@ namespace back_end
         {
             builder.Entity<productocolor>() .HasKey(x=> new { x.productosId,x.ColorId });
             builder.Entity<productotalla>().HasKey(x => new { x.productosId, x.tallaId });
+          
 
             // builder.Entity<productocolor>().HasKey(x => new { x.productotallacolorId, x.colorId });
 
@@ -35,8 +36,11 @@ namespace back_end
         public DbSet<productocolor> productotallacolor { get; set; }
         
         public DbSet<talla> talla { get; set; }
+        public DbSet<userapp> userapp { get; set; }
+
         public DbSet<Marca> marca { get; set; }
         public DbSet<Color> color { get; set; }
+       
 
 
 

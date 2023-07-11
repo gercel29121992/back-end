@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using back_end.Entidades;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,6 +16,6 @@ namespace PeliculasAPI.Entidades
         public int PeliculaId { get; set; }
        // public Pelicula Pelicula { get; set; }
         public string UsuarioId { get; set; }
-        public IdentityUser Usuario { get; set; }
+        public userapp Usuario { get; set; }
     }
 }

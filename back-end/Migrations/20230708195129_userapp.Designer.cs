@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using back_end;
 
@@ -10,9 +11,10 @@ using back_end;
 namespace back_end.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230708195129_userapp")]
+    partial class userapp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,7 +33,7 @@ namespace back_end.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("color", (string)null);
+                    b.ToTable("color");
                 });
 
             modelBuilder.Entity("back_end.Entidades.Comentario", b =>
@@ -57,7 +59,7 @@ namespace back_end.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Comentario", (string)null);
+                    b.ToTable("Comentario");
                 });
 
             modelBuilder.Entity("back_end.Entidades.Genero", b =>
@@ -72,7 +74,7 @@ namespace back_end.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Generos", (string)null);
+                    b.ToTable("Generos");
                 });
 
             modelBuilder.Entity("back_end.Entidades.Marca", b =>
@@ -87,7 +89,7 @@ namespace back_end.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("marca", (string)null);
+                    b.ToTable("marca");
                 });
 
             modelBuilder.Entity("back_end.Entidades.productocolor", b =>
@@ -105,7 +107,7 @@ namespace back_end.Migrations
 
                     b.HasIndex("ColorId");
 
-                    b.ToTable("productotallacolor", (string)null);
+                    b.ToTable("productotallacolor");
                 });
 
             modelBuilder.Entity("back_end.Entidades.productos", b =>
@@ -136,7 +138,7 @@ namespace back_end.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("productos", (string)null);
+                    b.ToTable("productos");
                 });
 
             modelBuilder.Entity("back_end.Entidades.productotalla", b =>
@@ -154,7 +156,7 @@ namespace back_end.Migrations
 
                     b.HasIndex("tallaId");
 
-                    b.ToTable("productotalla", (string)null);
+                    b.ToTable("productotalla");
                 });
 
             modelBuilder.Entity("back_end.Entidades.talla", b =>
@@ -169,7 +171,7 @@ namespace back_end.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("talla", (string)null);
+                    b.ToTable("talla");
                 });
 
             modelBuilder.Entity("Generoproductos", b =>
@@ -184,7 +186,7 @@ namespace back_end.Migrations
 
                     b.HasIndex("productosId");
 
-                    b.ToTable("Generoproductos", (string)null);
+                    b.ToTable("Generoproductos");
                 });
 
             modelBuilder.Entity("Marcaproductos", b =>
@@ -199,7 +201,7 @@ namespace back_end.Migrations
 
                     b.HasIndex("productosId");
 
-                    b.ToTable("Marcaproductos", (string)null);
+                    b.ToTable("Marcaproductos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -420,7 +422,7 @@ namespace back_end.Migrations
 
                     b.HasIndex("UsuarioId");
 
-                    b.ToTable("Ratings", (string)null);
+                    b.ToTable("Ratings");
                 });
 
             modelBuilder.Entity("back_end.Entidades.userapp", b =>

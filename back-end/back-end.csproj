@@ -8,16 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="aws-beanstalk-tools-defaults.jsonmm" />
-    <None Remove="aws-beanstalk-tools-defaults.jsonzz" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="aws-beanstalk-tools-defaults.jsonmm" />
-    <Content Include="aws-beanstalk-tools-defaults.jsonzz" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="7.2.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="AWSSDK.ElasticBeanstalk" Version="3.7.101.85" />
