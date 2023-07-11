@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Spatial;
 using PeliculasAPI.DTOs;
 using PeliculasAPI.Entidades;
+using System.Collections.Generic;
 
 namespace PeliculasAPI.Utilidades
 {
@@ -33,7 +34,13 @@ namespace PeliculasAPI.Utilidades
             CreateMap<productos, ProductotallaDTO>()
               .ForMember(x => x.DetalleDTO, options => options.MapFrom(MapearProductotalla));
 
+
+            CreateMap<userapp, UsuarioDTO>();
+          
+
+
         }
+
 
 
         private List<DetalleDTO> MapearProductotalla(productos producto, ProductotallaDTO productotallaDTO)
