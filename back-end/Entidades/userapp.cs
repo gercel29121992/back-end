@@ -10,7 +10,11 @@ namespace back_end.Entidades
         public string Apellido { get; set; }
         public string Cargo { get; set; }
         public int? Estado { get; set; }
-      
+        public int ciudadId { get; set; }
+        public ciudad ciudad { get; set; }
+
+
+
 
     }
 }

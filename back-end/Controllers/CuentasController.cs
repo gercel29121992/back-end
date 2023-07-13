@@ -53,12 +53,61 @@ namespace PeliculasAPI.Controllers
             return mapper.Map<List<UsuarioDTO>>(usuarios);
         }
 
+        [HttpGet("Usuario")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin")]
+        public async Task<ActionResult<UsuarioDTO>> Usuarios([FromQuery] string email)
+        {
+
+          
+            var usuario = await userManager.FindByEmailAsync(email);
+            if (usuario == null)
+            {
+                return NoContent();
+            }
+            Console.Write(usuario.Nombre);
+
+            return mapper.Map<UsuarioDTO>(usuario);
+        }
+
+
+        [HttpPost("Usuario")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin")]
+        public async Task<ActionResult> usuario([FromBody] string email)
+        {
+
+            Console.Write("gercel");
+            Console.Write(email);
+
+            var usuario = await userManager.FindByEmailAsync(email);
+            if (usuario == null)
+            {
+                return NoContent();
+            }
+            Console.Write(usuario.Nombre);
+
+            return NoContent();
+        }
+
         [HttpPost("HacerAdmin")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin")]
         public async Task<ActionResult> HacerAdmin([FromBody] string usuarioId)
         {
             var usuario = await userManager.FindByIdAsync(usuarioId);
             await userManager.AddClaimAsync(usuario, new Claim("role", "admin"));
+            return NoContent();
+        }
+
+        [HttpPost("bloq")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin")]
+        public async Task<ActionResult> bloq([FromBody] string usuarioId)
+        {
+            var usuario = await userManager.FindByIdAsync(usuarioId);
+            if(usuario==null)
+            {
+                return NoContent();
+            }
+            usuario.Estado = 0;
+            await userManager.UpdateAsync (usuario);
             return NoContent();
         }
 
@@ -74,8 +123,7 @@ namespace PeliculasAPI.Controllers
         [HttpPost("crear")]
         public async Task<ActionResult<RespuestaAutenticacion>> Crear([FromBody] CredencialesUsuario credenciales)
         {
-            Console.Write("gercel");
-            var usuario = new userapp { UserName = credenciales.Email, Email = credenciales.Email,ayudapass="holamundo",Sexo=credenciales.sexo,Nombre=credenciales.nombre,Apellido=credenciales.apellido,Estado=1,Cargo="estudiante" };
+            var usuario = new userapp { UserName = credenciales.Email, Email = credenciales.Email,ayudapass="holamundo",Sexo=credenciales.sexo,Nombre=credenciales.nombre,Apellido=credenciales.apellido,Estado=1,Cargo="estudiante",ciudadId=1 };
             var resultado = await userManager.CreateAsync(usuario, credenciales.Password);
 
             if (resultado.Succeeded)
@@ -86,6 +134,34 @@ namespace PeliculasAPI.Controllers
             {
                 return BadRequest(resultado.Errors);
             }
+        }
+
+
+        [HttpPost("edit")]
+        public async Task<ActionResult> edit([FromBody] CredencialesUsuarioEdit credenciales)
+        {
+
+            var usuario = await userManager.FindByIdAsync(credenciales.id);
+            if (usuario == null)
+            {
+                return NoContent();
+            }
+
+            Console.Write(usuario.Nombre);
+            Console.Write(credenciales.nombre);
+            usuario.Nombre = credenciales.nombre;
+            usuario.Apellido = credenciales.apellido;
+            usuario.Sexo = credenciales.sexo;
+            usuario.NormalizedEmail = credenciales.Email.ToUpper();
+            usuario.NormalizedUserName = credenciales.Email.ToUpper();
+            usuario.UserName = credenciales.Email.ToLower();
+            usuario.Email = credenciales.Email.ToLower();
+
+            await userManager.UpdateAsync(usuario);
+          
+           
+           
+            return Ok();
         }
 
         [HttpPost("login")]

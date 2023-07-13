@@ -8,7 +8,7 @@ namespace back_end
 {
 
 
-    public class DataContext : IdentityDbContext
+    public class DataContext : IdentityDbContext<userapp>
     {
 
 
@@ -20,13 +20,17 @@ namespace back_end
         {
             builder.Entity<productocolor>() .HasKey(x=> new { x.productosId,x.ColorId });
             builder.Entity<productotalla>().HasKey(x => new { x.productosId, x.tallaId });
-          
+             builder.Entity<userapp>().HasKey(x => new { x.ciudadId });
+
+
+
 
             // builder.Entity<productocolor>().HasKey(x => new { x.productotallacolorId, x.colorId });
 
             base.OnModelCreating(builder);
         }
         public DbSet<Comentario> Comentario { get; set; }
+        public DbSet<ciudad> ciudad { get; set; }
         public DbSet<productos> productos { get; set; }
        
         public DbSet<Genero> Generos { get; set; }
