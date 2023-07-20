@@ -54,7 +54,7 @@ namespace PeliculasAPI.Controllers
         }
 
         [HttpGet("Usuario")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<UsuarioDTO>> Usuarios([FromQuery] string email)
         {
 
@@ -70,23 +70,7 @@ namespace PeliculasAPI.Controllers
         }
 
 
-        [HttpPost("Usuario")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin")]
-        public async Task<ActionResult> usuario([FromBody] string email)
-        {
-
-            Console.Write("gercel");
-            Console.Write(email);
-
-            var usuario = await userManager.FindByEmailAsync(email);
-            if (usuario == null)
-            {
-                return NoContent();
-            }
-            Console.Write(usuario.Nombre);
-
-            return NoContent();
-        }
+      
 
         [HttpPost("HacerAdmin")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin")]
