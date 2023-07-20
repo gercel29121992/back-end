@@ -132,7 +132,7 @@ namespace PeliculasAPI.Controllers
             }
             else
             {
-                return BadRequest(resultado.Errors);
+                return BadRequest(resultado);
             }
         }
 
@@ -161,6 +161,35 @@ namespace PeliculasAPI.Controllers
           
            
            
+            return Ok();
+        }
+
+
+
+
+        [HttpPost("edit/pass")]
+        public async Task<ActionResult> editpass([FromBody] CredencialesUsuarioEditPass credenciales)
+        {
+
+            var usuario = await userManager.FindByIdAsync(credenciales.id);
+            if (usuario == null)
+            {
+                return NoContent();
+            }
+
+            Console.Write(credenciales.Password);
+
+            var result = await userManager.ChangePasswordAsync(usuario, credenciales.Password3, credenciales.Password2);
+
+            if (!result.Succeeded)
+            {
+                return BadRequest(result); ;
+            }
+
+            await userManager.UpdateAsync(usuario);
+
+
+
             return Ok();
         }
 
